@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -20,7 +21,9 @@ public class GlobalExceptionHandler {
       MethodArgumentNotValidException ex) {
 
     Map<String, String> errors = new HashMap<>();
-
+    /*for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+      errors.put(error.getField(), error.getDefaultMessage());
+    }*/
     ex.getBindingResult().getFieldErrors().forEach(
         error -> errors.put(error.getField(), error.getDefaultMessage()));
 

@@ -1,5 +1,6 @@
 package com.pm.patientservice.dto;
 
+
 public class PatientResponseDTO {
   private String id;
   private String name;
