@@ -19,7 +19,6 @@ public class BillingGrpcService extends BillingServiceImplBase {
       StreamObserver<BillingResponse> responseObserver) {
 
       log.info("createBillingAccount request received {}", billingRequest.toString());
-
       // Business logic - e.g save to database, perform calculates etc
 
       BillingResponse response = BillingResponse.newBuilder()
