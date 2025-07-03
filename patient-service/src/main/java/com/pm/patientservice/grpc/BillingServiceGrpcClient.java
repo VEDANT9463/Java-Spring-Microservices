@@ -15,6 +15,7 @@ public class BillingServiceGrpcClient {
 
   private static final Logger log = LoggerFactory.getLogger(
       BillingServiceGrpcClient.class);
+
   private final BillingServiceGrpc.BillingServiceBlockingStub blockingStub;
 
   public BillingServiceGrpcClient(
@@ -23,7 +24,6 @@ public class BillingServiceGrpcClient {
 
     log.info("Connecting to Billing Service GRPC service at {}:{}",
         serverAddress, serverPort);
-
     ManagedChannel channel = ManagedChannelBuilder.forAddress(serverAddress,
         serverPort).usePlaintext().build();
 
@@ -33,11 +33,14 @@ public class BillingServiceGrpcClient {
   public BillingResponse createBillingAccount(String patientId, String name,
       String email) {
 
-    BillingRequest request = BillingRequest.newBuilder().setPatientId(patientId)
-        .setName(name).setEmail(email).build();
+    BillingRequest request = BillingRequest.newBuilder()
+                     .setPatientId(patientId)
+                     .setName(name)
+                     .setEmail(email).build();
 
     BillingResponse response = blockingStub.createBillingAccount(request);
     log.info("Received response from billing service via GRPC: {}", response);
     return response;
   }
+
 }
